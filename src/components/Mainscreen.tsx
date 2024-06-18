@@ -1,147 +1,79 @@
-export interface ChatMessage {
-    message: string;
-    timeStamp: string;
+import { attachmentIcon, phoneIcon, sendIcon, threeDotsIcon, videoIcon, voiceIcon } from "../assets/Icon";
+import { UserChat } from "./FakeData";
+
+interface MainScreenProps {
+  currentChat: UserChat | null;
+  handleBackToChats: () => void;
 }
 
-export interface Chat {
-    [key: string]: ChatMessage;
-}
+const MainScreen: React.FC<MainScreenProps> = ({ currentChat, handleBackToChats }:any) => {
+  return (
+    <div >
+      {currentChat && (
+        <>
+          <div className="flex justify-between bg-[#F6F6F6]">
+            <div className="flex">
+              <button onClick={handleBackToChats} className="mr-2 lg:hidden">
+                Back
+              </button>
+              <img
+                src={currentChat.profilePictureURL}
+                alt={currentChat.name}
+                className="w-12 h-12 rounded-full mr-2"
+              />
+              <div className="flex flex-col ml-2">
+                <p className="font-semibold">{currentChat.name}</p>
+                <p className="font-light text-sm">Click here for contact info</p>
+              </div>
+            </div>
+            <div className="flex space-x-4 mt-3">
+              <div>{videoIcon}</div>
+              <div>{phoneIcon}</div>
+              <div>{threeDotsIcon}</div>
+            </div>
+          </div>
+          <div className="flex-1 overflow-y-auto">
+            {currentChat.chat.map((message:any, index:any) => {
+              const userId = currentChat.userId;
+              return (
+                <div key={index}>
+                  {message[userId] && (
+                    <div className="flex justify-start">
+                      <div className="bg-[#FAFAFA] p-2 rounded-[44px] mt-3 flex flex-col items-start">
+                        <h1>{message[userId].message}</h1>
+                        <p className="text-xs">{message[userId].timeStamp}</p>
+                      </div>
+                    </div>
+                  )}
+                  {"you" in message && (
+                    <div className="flex justify-end">
+                      <div className="bg-[#DCF7C5] p-2 rounded-[44px] mt-3 flex flex-col w-auto items-end">
+                        <h1>{message.you.message}</h1>
+                        <p className="text-xs">{message.you.timeStamp}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <div className="fixed  bottom-0 sm:right-0 sm:w-screen  max-sm:w-screen md:w-screen lg:w-3/4 p-4 bg-white ">
+      <div className="flex items-center">
+        <p>{attachmentIcon}</p>
+        <p className="ml-2">{voiceIcon}</p>
+        <input
+          type="text"
+          name="chat"
+          placeholder="Type message here"
+          className="flex-1 border border-gray-400 rounded-full h-8 ml-2 p-2"
+        />
+        <span className="mr-8 absolute right-0 ">{sendIcon}</span>
+      </div>
+    </div>
+        </>
+      )}
+    </div>
+  );
+};
 
-export interface UserChat {
-    userId: string;
-    name: string;
-    unreadCount: number;
-    profilePictureURL: string;
-    chat: Chat[];
-}
-
-export const data: UserChat[] = [
-    {
-        userId: "user1",
-        name: "Sam",
-        unreadCount: 1,
-        profilePictureURL:
-            "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg",
-        chat: [
-            {
-                user1: {
-                    message: "Hello",
-                    timeStamp: "10:40",
-                },
-                you: {
-                    message: "Hey",
-                    timeStamp: "10:41",
-                },
-            },
-            {
-                user1: {
-                    message: "How are you doing?",
-                    timeStamp: "10:41",
-                },
-                you: {
-                    message: "Fine mate, how about you?",
-                    timeStamp: "10:42",
-                },
-            },
-            {
-                user1: {
-                    message: "great",
-                    timeStamp: "10:44",
-                },
-                you: {
-                    message: "Coming to my wedding right? I don't think you confirmed.",
-                    timeStamp: "10:44",
-                },
-            },
-            {
-                user1: {
-                    message: "Oh yes. There is no way i am going to miss that.",
-                    timeStamp: "10:44",
-                },
-                you: {
-                    message:
-                        "Awesome. See ya there. Let me know if you want me to book tickets.",
-                    timeStamp: "10:45",
-                },
-            },
-        ],
-    },
-    {
-        userId: "user2",
-        name: "Elon",
-        unreadCount: 0,
-        profilePictureURL:
-            "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
-        chat: [
-            {
-                user2: {
-                    message: "there?",
-                    timeStamp: "11:39",
-                },
-                you: {
-                    message: "yeah, whats up?",
-                    timeStamp: "11:47",
-                },
-            },
-            {
-                user2: {
-                    message: "movie tomorrow?",
-                    timeStamp: "11:49",
-                },
-                you: {
-                    message: "Yeah sure. let me know the timings. and which movie again?",
-                    timeStamp: "11:52",
-                },
-            },
-            {
-                user2: {
-                    message: "the new mad max movie. Reviews are great.",
-                    timeStamp: "11:52",
-                },
-                you: {
-                    message: "Oh yes, i have been waiting for that one.",
-                    timeStamp: "11:54",
-                },
-            },
-        ],
-    },
-    {
-        userId: "user3",
-        name: "Kate",
-        unreadCount: 1,
-        profilePictureURL:
-            "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg",
-        chat: [
-            {
-                user3: {
-                    message: "that burger was delicious!",
-                    timeStamp: "13:12",
-                },
-                you: {
-                    message: "Oh yes, no doubt.",
-                    timeStamp: "13:13",
-                },
-            },
-            {
-                user3: {
-                    message: "We are definitely going to that place again.",
-                    timeStamp: "13:13",
-                },
-                you: {
-                    message: "we are. My mouth waters whenever drive through that area",
-                    timeStamp: "13:14",
-                },
-            },
-            {
-                user3: {
-                    message: "haha, I bet. Lets take Tony and Natasha too next time",
-                    timeStamp: "13:14",
-                },
-                you: {
-                    message: "Sure. they would love it",
-                    timeStamp: "13:15",
-                },
-            },
-        ],
-    },
-];
+export default MainScreen;
