@@ -1,30 +1,27 @@
-# React + TypeScript + Vite
+# Monk Commerce Assignment
+Welcome to the Monk Commerce Assignment project. Follow the steps below to clone and set up the project on your local machine.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Prerequisites
+Make sure you have the following installed on your machine:
 
-Currently, two official plugins are available:
+. Node.js
+. Visual Studio Code (VS Code)
+# Getting Started
+# 1. Clone the Repository
+First, you need to clone the repository from GitHub. Open your terminal and run the following command:
+ git clone https://github.com/pratyush8564/monk-commerce-assignment.git
+# 2. Open the Project in Visual Studio Code
+Navigate to the project directory and open it in Visual Studio Code:
+# cd monk-commerce-assignment
+# code .
+# 3. Install Dependencies
+Once the project is open in VS Code, open the terminal in VS Code. You can do this by going to View > Terminal or by pressing `Ctrl + `` (backtick).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+In the terminal, run the following command to install the necessary dependencies:
+# npm install
+# 4. Run the Project
+After the dependencies are installed, run the following command to start the development server:
+# npm run dev
+# 5. Access the Application
+Once the development server is running, you can access the application in your web browser at:
+# http://localhost:5173/
